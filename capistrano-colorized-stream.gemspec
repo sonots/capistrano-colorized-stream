@@ -3,11 +3,11 @@
 
 Gem::Specification.new do |gem|
   gem.name = 'capistrano-colorized-stream'
-  gem.version = '0.2'
+  gem.version = '0.2.1'
   gem.authors = %w(Naotoshi Seo)
   gem.email = %w(sonots@gmail.com)
   gem.homepage = 'https://github.com/sonots/capistrano-colorized-stream'
-  gem.summary = 'Colorize hostnames for stream method'
+  gem.summary = 'enables to watch logs on multiple deploying hosts in one view with a colored hostname at the head of each line'
   gem.description = gem.summary
 
   gem.rubyforge_project = "capistrano-colorized-stream"
