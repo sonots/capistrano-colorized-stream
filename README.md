@@ -4,11 +4,9 @@ testing ruby: 1.9.3; Capistrano: > 2.0
 
 ## About capistrano-colorized-stream 
 
-capistrano-colorized-stream adds a feature to append colorized hostnames at the head of each line for the capistrano's `stream` method. 
+capistrano-colorized-stream adds a feature to append colorized hostnames at the head of each line for the [capistrano](https://github.com/capistrano/capistrano)'s `stream` method. 
 
-[Capistrano](https://github.com/capistrano/capistrano) is a utility and framework for executing commands in parallel on multiple remote machines, via SSH.
-
-With this gem, it enables you to watch logs on multiple deploying hosts in one view with a colored hostname like [foreman](https://github.com/ddollar/foreman), for example.
+With this gem, it enables you to watch logs on multiple deploying hosts concurrently with colored hostnames like [foreman](https://github.com/ddollar/foreman), for example.
 
 ## USAGE
 
