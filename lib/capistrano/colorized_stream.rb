@@ -9,7 +9,7 @@ module Capistrano
   class Configuration
     module Actions
       module Inspect
-        def stream_with_color(command, options={})
+        def stream_with_colorized(command, options={})
           trap("INT") { puts 'Interupted'; exit 0; }
 
           previous_last_line = Hash.new("")
@@ -22,24 +22,28 @@ module Capistrano
               previous_last_line[hostname] = lines.pop
 
               # puts with colorized hostname
-              lines.each {|line| puts colorize_host(hostname) + ": " + line }
+              lines.each {|line| puts hostname.colorize(color_for(hostname)) + ": " + line }
             end
             warn "[err :: #{ch[:server]}] #{out}" if stream == :err
           end
         end
-        alias_method :stream_without_color, :stream
-        alias_method :stream, :stream_with_color
+        alias_method :stream_without_colorized, :stream
+        alias_method :stream, :stream_with_colorized
 
         private
 
-        def colorize_host(host)
-          @colors ||= {}
-          @colors[host] ||= String.colors[str2acsii(host) % String.colors.size]
-          host.colorize(@colors[host])
+        def color_for(hostname)
+          if @color_for.nil?
+            @color_for = {}
+            servers = find_servers_for_task(current_task)
+            servers.each_with_index {|host, i| @color_for[host.to_s] = color_list[i] }
+          end
+          @color_for[hostname]
         end
 
-        def str2acsii(str="")
-          str.each_byte.inject(0) {|sum, byte| sum + byte }
+        def color_list
+          %w( cyan yellow green magenta red blue light_cyan light_yellow
+          light_green light_magenta light_red, light_blue ).map(&:to_sym)
         end
       end
     end
