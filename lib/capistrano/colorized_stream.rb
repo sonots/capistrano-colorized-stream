@@ -22,7 +22,7 @@ module Capistrano
               previous_last_line[hostname] = lines.pop
 
               # puts with colorized hostname
-              lines.each {|line| puts hostname.colorize(color_for(hostname)) + ": " + line }
+              lines.each {|line| puts colorized(hostname) + line }
             end
             warn "[err :: #{ch[:server]}] #{out}" if stream == :err
           end
@@ -32,16 +32,17 @@ module Capistrano
 
         private
 
-        def color_for(hostname)
-          if @color_for.nil?
-            @color_for = {}
-            servers = find_servers_for_task(current_task)
-            servers.each_with_index {|host, i| @color_for[host.to_s] = color_list[i] }
+        def colorized(hostname)
+          if @colorized.nil?
+            @colorized = {}
+            servers = find_servers_for_task(current_task).map(&:to_s)
+            len = servers.map(&:length).max
+            servers.each_with_index {|host, i| @colorized[host] = (host.ljust(len) + ' | ').colorize(colors[i]) }
           end
-          @color_for[hostname]
+          @colorized[hostname]
         end
 
-        def color_list
+        def colors
           %w( cyan yellow green magenta red blue light_cyan light_yellow
           light_green light_magenta light_red, light_blue ).map(&:to_sym)
         end
