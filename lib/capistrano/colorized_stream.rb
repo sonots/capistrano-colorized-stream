@@ -37,13 +37,16 @@ module Capistrano
             @colorized = {}
             servers = find_servers_for_task(current_task).map(&:to_s)
             len = servers.map(&:length).max
-            servers.each_with_index {|host, i| @colorized[host] = (host.ljust(len) + ' | ').colorize(colors[i]) }
+            servers.each_with_index do |host, i|
+              color = colors[i % colors.size]
+              @colorized[host] = (host.ljust(len) + ' | ').colorize(color)
+            end
           end
           @colorized[hostname]
         end
 
         def colors
-          %w( cyan yellow green magenta red blue light_cyan light_yellow
+          @collors ||= %w( cyan yellow green magenta red blue light_cyan light_yellow
           light_green light_magenta light_red, light_blue ).map(&:to_sym)
         end
       end
