@@ -46,8 +46,8 @@ module Capistrano
         end
 
         def colors
-          @collors ||= %w( cyan yellow green magenta red blue light_cyan light_yellow
-          light_green light_magenta light_red, light_blue ).map(&:to_sym)
+          @colors ||= %w( cyan yellow green magenta red blue light_cyan light_yellow
+          light_green light_magenta light_red light_blue ).map(&:to_sym)
         end
       end
     end
