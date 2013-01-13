@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |gem|
   gem.name = 'capistrano-colorized-stream'
-  gem.version = '0.2.1'
+  gem.version = File.read(File.expand_path('VERSION', File.dirname(__FILE__))).chomp
   gem.authors = %w(Naotoshi Seo)
   gem.email = %w(sonots@gmail.com)
   gem.homepage = 'https://github.com/sonots/capistrano-colorized-stream'
