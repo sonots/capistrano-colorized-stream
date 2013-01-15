@@ -10,7 +10,7 @@ With this gem, it enables you to watch logs on multiple deploying hosts concurre
 
 ## USAGE
 
-For example, to stream log files located on multiple hosts, use the extended `stream` method at config/deploy.rb as
+For example, to stream /var/log/syslog files located on multiple hosts, use the extended `stream` method at config/deploy.rb as:
 
 ```ruby
 require 'capistrano/colorized_stream'
@@ -19,6 +19,14 @@ task :syslog do
   stream "tail -f /var/log/syslog"
 end
 ```
+
+Then, execute the defined capistrano task
+
+    $ bundle exec cap syslog
+
+Below is an example of results.
+
+![capistrano-colorized-stream.png](https://f.cloud.github.com/assets/2290461/68476/308c50de-5f35-11e2-8f5d-61b1dd62626a.png)
 
 ## Acknowledgement
 
