@@ -9,6 +9,7 @@ Gem::Specification.new do |gem|
   gem.homepage = 'https://github.com/sonots/capistrano-colorized-stream'
   gem.summary = 'enables to watch logs on multiple deploying hosts concurrently with colored hostnames'
   gem.description = gem.summary
+  gem.licenses = ['MIT']
 
   gem.rubyforge_project = "capistrano-colorized-stream"
 
@@ -28,6 +29,6 @@ Gem::Specification.new do |gem|
 
   # for debug
   gem.add_development_dependency "pry"
-  gem.add_development_dependency "pry-debugger"
+  gem.add_development_dependency "pry-nav"
   gem.add_development_dependency "tapp"
 end

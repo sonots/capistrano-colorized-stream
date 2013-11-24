@@ -15,7 +15,10 @@ For example, to stream /var/log/syslog files located on multiple hosts, use the 
 ```ruby
 require 'capistrano/colorized_stream'
 
-task :syslog do
+server host1, :web
+server host2, :web
+
+task :syslog, :roles => :web do
   stream "tail -f /var/log/syslog"
 end
 ```
@@ -27,6 +30,11 @@ Then, execute the defined capistrano task
 Below is an example of results.
 
 ![capistrano-colorized-stream.png](https://f.cloud.github.com/assets/2290461/68476/308c50de-5f35-11e2-8f5d-61b1dd62626a.png)
+
+
+## License
+
+MIT License
 
 ## Acknowledgement
 
